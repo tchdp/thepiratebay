@@ -7,9 +7,8 @@ module ThePirateBay
 
       doc = Nokogiri::HTML(open('http://thepiratebay.org/torrent/' + torrent_id.to_s))
 
-      dd_cache = contents.search('#details dd').select{|dd| is_a_number?(dd.text) }
-
       contents    = doc.search('#detailsframe')
+      dd_cache    = contents.search('#details dd').select{|dd| is_a_number?(dd.text) }
       title       = contents.search('#title').text.strip
       category    = contents.search('#details .col1 dd')[0].text
       nr_files    = dd_cache[0].text
