@@ -19,8 +19,11 @@ module ThePirateBay
       magnet_link = contents.search('#details .download a')[1]['href']
       description = contents.search('#details .nfo pre').text
       url         = 'http://thepiratebay.org/torrent/' + torrent_id.to_s
+      poster_url  = 'http:' + contents.search("#details .torpicture img")[0].attributes["src"].value
 
-      torrent = {:title       => title,
+
+      torrent = {:torrent_id  => torrent_id,
+                 :title       => title,
                  :category    => category,
                  :files       => nr_files, 
                  :size        => size,
@@ -29,7 +32,8 @@ module ThePirateBay
                  :leechers    => leechers,
                  :magnet_link => magnet_link,
                  :description => description,
-                 :url         => url}
+                 :url         => url,
+                 :poster_url  => poster_url}
 
       return torrent
     end
