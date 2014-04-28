@@ -16,6 +16,7 @@ module ThePirateBay
       uploaded    = contents.search('#details dd').select{|dd| dd.text.include?("GMT") }[0].text
       seeders     = dd_cache[1].text
       leechers    = dd_cache[2].text
+      torrent_link = contents.search('#details .download a')[0]['href'] 
       magnet_link = contents.search('#details .download a')[1]['href']
       description = contents.search('#details .nfo pre').text
       url         = 'http://thepiratebay.org/torrent/' + torrent_id.to_s
@@ -33,7 +34,8 @@ module ThePirateBay
                  :magnet_link => magnet_link,
                  :description => description,
                  :url         => url,
-                 :poster_url  => poster_url}
+                 :poster_url  => poster_url,
+                 :torrent_url => torrent_link}
 
       return torrent
     end
