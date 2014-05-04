@@ -4,7 +4,7 @@ module ThePirateBay
 		alias_method :results, :torrents
 
 		def initialize(page = 0, sort_by = 99, category = 0)
-			fetch = Fetch.new "http://thepiratebay.org/browse/#{category.to_s}/#{page.to_s}/#{sort_by.to_s}"
+			fetch = Fetch.new "https://thepiratebay.se/browse/#{category.to_s}/#{page.to_s}/#{sort_by.to_s}"
 			@torrents = fetch.torrents
 		end
 	end
